@@ -1,5 +1,5 @@
 # Utilisation de l'image officielle OpenJDK avec Maven
-FROM maven:3.8-openjdk-17 AS build
+FROM maven:3.9-eclipse-temurin-17 AS build
 WORKDIR /app
 
 # Copier le projet et installer les dépendances
@@ -11,7 +11,7 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # Utiliser une image plus légère pour exécuter l'application
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17-jdk-jammy
 WORKDIR /app
 
 # Copier le JAR depuis l'étape précédente
